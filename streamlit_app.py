@@ -2,13 +2,17 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("간단한 Streamlit 예제")
-st.write("데이터와 그래프를 보여주는 예제입니다.")
+data = {"요일": ["월", "화", "수", "목", "금"], "강좌수": [3, 2, 3, 0, 1]}
+list_data = [["월", 3], ["화", 2], ["수", 3], ["목", 0], ["금", 1]]
+df = pd.DataFrame(data)
 
-# 샘플 데이터
-data = pd.DataFrame(
-    np.random.randn(20, 3),
-    columns=['A', 'B', 'C']
-)
+st.write("### 요일 당 강의 수")
+st.table(df)
 
-st.line_chart(data)
+json_data = {"컴탐": "교수: 변해선, 강의실: 26동 104호"}
+st.write("### 수업정보")
+st.json(json_data)
+
+st.write("### 이번 학기 요약")
+st.metric(label="수강과목수", value="6") 
+st.metric(label="총 학점", value="18")
